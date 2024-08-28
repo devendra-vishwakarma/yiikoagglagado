@@ -15,4 +15,12 @@ class CoinController extends Controller
             'coins' => $coins,
         ]);
     }
+
+
+    public function actionService(){
+        $coins = Coin::getDummyData();
+        return $this->render('service', [
+            "coins" => $coins,
+        ]);
+    }
 }

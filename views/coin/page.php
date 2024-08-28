@@ -2,7 +2,6 @@
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 
-// Function to format the price and change percentage
 function formatCurrency($value, $currency = '$')
 {
     return $currency . number_format($value, 2);
@@ -12,11 +11,15 @@ $this->title = 'Cryptocurrency Prices by Market Cap';
 ?>
 
 <div class="container">
-    <div class="sidebar">
+    <div class="sidebar d-flex flex-column align-item-center text-center">
         <h2>Sidebar</h2>
         <ul>
-            <li><a href="<?= \yii\helpers\Url::to(['/site/index']) ?>">Home</a></li>
-            <li><a href="<?= \yii\helpers\Url::to(['/coin/page']) ?>">CryptoCoins</a></li>
+            <li class="mb-4 mt-5"><a href="<?= \yii\helpers\Url::to(['/site/index']) ?>">Home</a></li>
+            <li class="mb-4"><a href="<?= \yii\helpers\Url::to(['/coin/page']) ?>">CryptoCoins</a></li>
+            <li class="mb-4"><a href="<?= \yii\helpers\Url::to(['/coin/service']) ?>">Service</a></li>
+            <li class="mb-4"><a href="<?= \yii\helpers\Url::to(['/coin/page']) ?>">Contact-Us</a></li>
+            <li class="mb-4"><a href="<?= \yii\helpers\Url::to(['/coin/page']) ?>">Setting</a></li>
+            <li class="mb-4"><a href="<?= \yii\helpers\Url::to(['/coin/page']) ?>">Profile</a></li>
             <!-- Add more sidebar items as needed -->
         </ul>
     </div>

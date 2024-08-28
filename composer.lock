@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72ac0b8252822528c034bbf39a2eb746",
+    "content-hash": "cca6a16c7939327886f662dc37d12a32",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -364,6 +364,33 @@
                 "source": "https://github.com/ezyang/htmlpurifier/tree/v4.17.0"
             },
             "time": "2023-11-17T15:01:25+00:00"
+        },
+        {
+            "name": "npm-asset/chart.js",
+            "version": "4.4.4",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/chart.js/-/chart.js-4.4.4.tgz"
+            },
+            "require": {
+                "npm-asset/kurkle--color": ">=0.3.0,<0.4.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/kurkle--color",
+            "version": "0.3.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/@kurkle/color/-/color-0.3.2.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "paragonie/random_compat",
