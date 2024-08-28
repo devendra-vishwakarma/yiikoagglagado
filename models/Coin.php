@@ -15,6 +15,39 @@ class Coin extends Model
     public $price_change_percentage_24h;
 
     // Dummy data for demonstration
+    public static function addToCart($coinId)
+    {
+        $session = \Yii::$app->session;
+        $cart = $session->get('cart', []);
+
+        if (!isset($cart[$coinId])) {
+            $cart[$coinId] = 1; // Start with one item
+        } else {
+            $cart[$coinId]++; // Increment the quantity
+        }
+
+        $session->set('cart', $cart);
+    }
+
+    public static function getCartItems()
+    {
+        $session = \Yii::$app->session;
+        $cart = $session->get('cart', []);
+        $coins = self::getDummyData();
+        $cartItems = [];
+
+        foreach ($cart as $id => $quantity) {
+            foreach ($coins as $coin) {
+                if ($coin['id'] === $id) {
+                    $coin['quantity'] = $quantity;
+                    $cartItems[] = $coin;
+                    break;
+                }
+            }
+        }
+
+        return $cartItems;
+    }
     public static function getDummyData()
     {
         return [

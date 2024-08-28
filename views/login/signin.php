@@ -3,13 +3,12 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\User */
+
 
 $this->title = 'Sign In';
 ?>
 <div class="site-signin"
-    style="background: url('./banner2.jpg') no-repeat center center; background-size: cover; padding: 2rem;">
+    style="background-image: url('./banner2.jpg') no-repeat center center; background-size: cover; padding: 2rem;">
 
     <div style="text-align: center; margin-top: 7.5rem;">
         <h1 style="color: yellow; font-weight: bold; font-size: 5rem; text-shadow: 2px 2px 4px yellow;">Crypto Hunter

@@ -17,10 +17,25 @@ class CoinController extends Controller
     }
 
 
-    public function actionService(){
+    public function actionService()
+    {
         $coins = Coin::getDummyData();
         return $this->render('service', [
             "coins" => $coins,
+        ]);
+    }
+
+    public function actionAddToCart($id)
+    {
+        Coin::addToCart($id);
+        return $this->redirect(['viewcart']);
+    }
+
+    public function actionViewcart()
+    {
+        $cartItems = Coin::getCartItems();
+        return $this->render('viewcart', [
+            'cartItems' => $cartItems,
         ]);
     }
 }

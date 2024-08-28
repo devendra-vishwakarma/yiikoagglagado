@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 ?>
 
 <div class="container mt-4 d-flex gap-5 flex-wrap">
@@ -18,7 +19,7 @@ use yii\helpers\Html;
                 </p>
                 <div class="d-flex align-item-center justify-content-around">
                     <div>
-                        <a href="#" class="btn btn-success">Buy</a>
+                        <a href="<?= Url::to(['coin/add-to-cart', 'id' => $coin['id']]) ?>" class="btn btn-success">Buy</a>
                     </div>
                     <div>
                         <a href="#" class="btn btn-danger">Sell</a>
