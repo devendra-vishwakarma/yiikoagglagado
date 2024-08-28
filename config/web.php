@@ -32,10 +32,10 @@ $config = [
         'corsFilter' => [
             'class' => Cors::class,
             'cors' => [
-                'Origin' => ['http://127.0.0.1:3001/my-yii2-app/web/', 'http://127.0.0.1:3001/my-yii2-app/web/login/signin','http://127.0.0.1:3001/my-yii2-app/web/login/signup'], // Replace with your allowed origins
+                'Origin' => ['http://localhost:5173'], // Replace with your allowed origins
                 'Access-Control-Allow-Methods' => ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
                 'Access-Control-Allow-Headers' => ['Content-Type', 'Authorization'],
-                'Access-Control-Allow-Credentials' => true, // Allow credentials
+                'Access-Control-Allow-Credentials' => true,
                 'Access-Control-Max-Age' => 3600,
                 'Access-Control-Expose-Headers' => ['X-Pagination-Current-Page'],
             ],
@@ -58,7 +58,7 @@ $config = [
             ],
         ],
         'user' => [
-            'identityClass' => 'app\models\User', // Set your user identity class here
+            'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
     ],

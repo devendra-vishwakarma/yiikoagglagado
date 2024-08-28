@@ -2,8 +2,9 @@
 namespace app\controllers;
 
 use Yii;
-use yii\web\Controller;
+use yii\rest\Controller;
 use app\models\User;
+use yii\web\Response;
 
 class LoginController extends Controller
 {
@@ -11,47 +12,66 @@ class LoginController extends Controller
     {
         return array_merge(parent::behaviors(), [
             'corsFilter' => [
-            'class' => \yii\filters\Cors::class,
-            'cors' => [
-                'Origin' => ['http://localhost:5173'],
-                'Access-Control-Allow-Credentials' => true,
-                'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-                'Access-Control-Allow-Headers' => ['Authorization', 'Content-Type', 'X-Requested-With'],
-                'Access-Control-Allow-Origin' => true,
+                'class' => \yii\filters\Cors::class,
+                'cors' => [
+                    'Origin' => ['http://localhost:5173'],
+                    'Access-Control-Allow-Credentials' => true,
+                    'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+                    'Access-Control-Allow-Headers' => ['Authorization', 'Content-Type', 'X-Requested-With'],
+                    'Access-Control-Allow-Origin' => true,
+                ],
             ],
-        ],
         ]);
     }
+
     public function actionSignup()
     {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $model = new User();
 
-        // Check if the form is submitted and the data is valid
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            // Hash the password before saving
-            $model->password = Yii::$app->security->generatePasswordHash($model->password);
-
+        if ($model->load(Yii::$app->request->post(), '') && $model->validate()) {
+            $model->setPassword($model->password);
             if ($model->save()) {
-                // Redirect to a view page or any other page after successful signup
-                return $this->redirect("signin");
+                return [
+                    'status' => 'success',
+                    'message' => 'Signup successful',
+                    'data' => $model,
+                ];
             } else {
-                Yii::$app->session->setFlash('error', 'There was a problem saving your information.');
+                return [
+                    'status' => 'error',
+                    'message' => 'Signup failed',
+                    'errors' => $model->errors,
+                ];
             }
         }
 
-        // Render the sign-up view and pass the model
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
+        return [
+            'status' => 'error',
+            'message' => 'Validation failed',
+            'errors' => $model->errors,
+        ];
     }
 
     public function actionSignin()
     {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $model = new User();
 
-        // Render the sign-in view and pass the model
-        return $this->render('signin', [
-            'model' => $model,
-        ]);
+        $request = Yii::$app->request->post();
+        $user = User::findOne(['email' => $request['email']]);
+
+        if ($user && $user->validatePassword($request['password'])) {
+            return [
+                'status' => 'success',
+                'message' => 'Signin successful',
+                'data' => $user,
+            ];
+        }
+
+        return [
+            'status' => 'error',
+            'message' => 'Invalid email or password',
+        ];
     }
 }
