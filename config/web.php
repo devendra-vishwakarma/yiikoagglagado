@@ -1,4 +1,5 @@
 <?php
+use yii\filters\Cors;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -9,6 +10,7 @@ $config = [
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
+            'csrfParam' => '_csrf-backend',
             'cookieValidationKey' => 'your-secret-key',
             'parsers' => [
                 'application/json' => \yii\web\JsonParser::class,
@@ -18,17 +20,24 @@ $config = [
             'formatters' => [
                 'json' => [
                     'class' => \yii\web\JsonResponseFormatter::class,
-                    'prettyPrint' => true,
+                    'prettyPrint' => true, // Makes the JSON output more readable
                 ],
             ],
+            'on beforeSend' => function ($event) {
+                $response = $event->sender;
+                $response->headers->add('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+                $response->headers->add('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+            },
         ],
         'corsFilter' => [
-            'class' => \yii\filters\Cors::class,
+            'class' => Cors::class,
             'cors' => [
-                'Origin' => ['*'],
-                'Access-Control-Allow-Origin' => ['*'],
+                'Origin' => ['http://127.0.0.1:3001/my-yii2-app/web/', 'http://127.0.0.1:3001/my-yii2-app/web/login/signin','http://127.0.0.1:3001/my-yii2-app/web/login/signup'], // Replace with your allowed origins
                 'Access-Control-Allow-Methods' => ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-                'Access-Control-Allow-Headers' => ['X-Requested-With', 'Content-Type', 'Authorization'],
+                'Access-Control-Allow-Headers' => ['Content-Type', 'Authorization'],
+                'Access-Control-Allow-Credentials' => true, // Allow credentials
+                'Access-Control-Max-Age' => 3600,
+                'Access-Control-Expose-Headers' => ['X-Pagination-Current-Page'],
             ],
         ],
         'urlManager' => [
@@ -48,10 +57,15 @@ $config = [
                 ],
             ],
         ],
+        'user' => [
+            'identityClass' => 'app\models\User', // Set your user identity class here
+            'enableAutoLogin' => true,
+        ],
     ],
     'params' => $params,
-    'as cors' => [
-        'class' => \yii\filters\Cors::class,
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
 ];
 

@@ -13,7 +13,7 @@ use yii\filters\VerbFilter;
 class ProductController extends Controller
 {
   
-    public function behaviors()
+  public function behaviors()
     {
         return [
             'corsFilter' => [
