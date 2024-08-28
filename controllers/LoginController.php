@@ -14,7 +14,7 @@ class LoginController extends Controller
             'corsFilter' => [
                 'class' => \yii\filters\Cors::class,
                 'cors' => [
-                    'Origin' => ['http://localhost:5173'],
+                    'Origin' => ['http://localhost:3000'], // changeb acoording to react port
                     'Access-Control-Allow-Credentials' => true,
                     'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
                     'Access-Control-Allow-Headers' => ['Authorization', 'Content-Type', 'X-Requested-With'],
@@ -46,11 +46,8 @@ class LoginController extends Controller
             }
         }
 
-        return [
-            'status' => 'error',
-            'message' => 'Validation failed',
-            'errors' => $model->errors,
-        ];
+        return $this->render('signup');
+        
     }
 
     public function actionSignin()
