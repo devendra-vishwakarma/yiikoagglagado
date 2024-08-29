@@ -1,0 +1,39 @@
+/project-root
+│
+├── /yii-backend
+│   ├── /config
+│   ├── /controllers
+│   ├── /models
+│   ├── /views
+│   ├── /runtime
+│   ├── /web
+│   │   ├── /assets
+│   │   ├── /css
+│   │   ├── /images
+│   │   ├── /js
+│   │   ├── /react       # React build output
+│   │   │   ├── /static
+│   │   │   ├── index.html
+│   │   ├── .htaccess     # Apache configuration
+│   │   └── index.php     # Entry point for Yii
+│   ├── /vendor
+│   ├── /webroot
+│   ├── yii                # Yii command-line script
+│   └── composer.json      # Composer dependencies
+│
+├── /react-frontend
+│   ├── /public
+│   ├── /src
+│   ├── /dist             # Vite build output
+│   ├── /node_modules
+│   ├── index.html
+│   ├── vite.config.ts
+│   └── package.json
+│
+└── README.md
+
+i have some requirement in this requirment we have create hybrid application in this application we are trying to run yii and react application suppose i give you some url
+like localhost:3000/yii this iss yii route url and after this localhost:3000/yii/react this is react app so can you please give me a process and road map how i integrate both og them this application is of react is make in vite latest
+
+what i write inside index.html when i have build to serve react route
+

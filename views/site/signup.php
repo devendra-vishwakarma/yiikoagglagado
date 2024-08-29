@@ -54,7 +54,7 @@ $this->title = 'Sign Up';
                 </div>
 
                 <div class="form-group" style="text-align: center;">
-                    <?= Html::a('Sign In', ['login/signin'], ['class' => 'btn btn-primary', 'style' => 'background-color: #34B335; font-weight: bold; font-size: 1.1rem;']) ?>
+                    <?= Html::a('Sign In', ['site/signin'], ['class' => 'btn btn-primary', 'style' => 'background-color: #34B335; font-weight: bold; font-size: 1.1rem;']) ?>
                 </div>
             </div>
 

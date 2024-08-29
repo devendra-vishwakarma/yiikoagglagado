@@ -3,8 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-
-
 $this->title = 'Sign In';
 ?>
 <div class="site-signin"
@@ -20,7 +18,7 @@ $this->title = 'Sign In';
         style="width: 30%; padding: 2rem; box-shadow: 0px 4px 20px #77DD77; border-radius: 16px; background-color: #fff; margin: 5rem auto;">
         <?php $form = ActiveForm::begin([
             'id' => 'signin-form',
-            'options' => ['class' => 'form-horizontal'],
+            'options' => ['class' => 'form-horizontal', 'onsubmit' => 'handleSubmit(event)'], // Add handleSubmit to form submit
             'fieldConfig' => [
                 'template' => "<div class=\"form-group\">{label}\n{input}\n{error}</div>",
                 'labelOptions' => ['class' => 'control-label'],
@@ -49,10 +47,11 @@ $this->title = 'Sign In';
             </div>
 
             <div class="form-group" style="text-align: center;">
-                <?= Html::a('Sign Up', ['login/signup'], ['class' => 'btn btn-primary', 'style' => 'background-color: #34B335; font-weight: bold; font-size: 1.1rem;']) ?>
+                <?= Html::a('Sign Up', ['site/signup'], ['class' => 'btn btn-primary', 'style' => 'background-color: #34B335; font-weight: bold; font-size: 1.1rem;']) ?>
             </div>
         </div>
 
         <?php ActiveForm::end(); ?>
     </div>
 </div>
+

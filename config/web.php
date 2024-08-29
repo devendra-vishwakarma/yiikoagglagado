@@ -11,7 +11,7 @@ $config = [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
-            'cookieValidationKey' => 'your-secret-key',
+            'cookieValidationKey' => 'hello',
             'parsers' => [
                 'application/json' => \yii\web\JsonParser::class,
             ],

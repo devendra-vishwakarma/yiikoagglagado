@@ -46,7 +46,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                 ['label' => 'Home', 'url' => ['/site/index']],
                 ['label' => 'CryptoCoins', 'url' => ['/coin/page']],
                 Yii::$app->user->isGuest
-                ? ['label' => 'Login', 'url' => ['login/signup']]
+                ? ['label' => 'Login', 'url' => ['/site/signup']]
                 : '<li class="nav-item">'
                 . Html::beginForm(['/site/logout'])
                 . Html::submitButton(
